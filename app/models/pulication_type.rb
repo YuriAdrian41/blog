@@ -1,0 +1,2 @@
+class PulicationType < ApplicationRecord
+end
