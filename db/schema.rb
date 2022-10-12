@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_12_170133) do
+ActiveRecord::Schema[7.0].define(version: 2022_10_12_173500) do
   create_table "articles", force: :cascade do |t|
     t.string "title"
     t.text "body"
@@ -33,6 +33,21 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_12_170133) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "description"
+    t.string "price"
+  end
+
+  create_table "publications", force: :cascade do |t|
+    t.string "title"
+    t.text "description"
+    t.integer "publication_type_id"
+    t.string "publisher_type"
+    t.integer "publisher_id"
+    t.boolean "single_issue"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["publication_type_id"], name: "index_publications_on_publication_type_id"
+    t.index ["publisher_type", "publisher_id"], name: "index_publications_on_publisher"
   end
 
   create_table "publishers", force: :cascade do |t|
