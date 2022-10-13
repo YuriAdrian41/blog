@@ -10,49 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_12_170133) do
-  create_table "articles", force: :cascade do |t|
-    t.string "title"
-    t.text "body"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "status"
-  end
-
-  create_table "comments", force: :cascade do |t|
-    t.string "commenter"
-    t.text "body"
-    t.integer "article_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "status"
-    t.index ["article_id"], name: "index_comments_on_article_id"
-  end
-
-  create_table "products", force: :cascade do |t|
+ActiveRecord::Schema[7.0].define(version: 2022_09_06_171750) do
+  create_table "authors", force: true do |t|
     t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
-  create_table "publishers", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "pulication_types", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "users", force: :cascade do |t|
+  create_table "products", force: true do |t|
     t.string "name"
-    t.string "occupation"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "max_login_attempts"
-    t.boolean "must_change_password"
+    t.text "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string "part_number"
   end
-
-  add_foreign_key "comments", "articles"
 end
