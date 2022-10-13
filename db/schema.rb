@@ -10,7 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_13_132404) do
+ActiveRecord::Schema[7.0].define(version: 2022_10_13_203947) do
+  create_table "accounts", force: :cascade do |t|
+    t.string "subdomain"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "articles", force: :cascade do |t|
     t.string "title"
     t.text "body"
@@ -51,6 +57,11 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_13_132404) do
     t.integer "product_id", null: false
   end
 
+  create_table "libraries", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "people", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -67,8 +78,16 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_13_132404) do
     t.string "upc_code"
     t.string "name", null: false
     t.boolean "approved", default: false
+    t.string "legacy_code"
     t.index ["part_number"], name: "index_products_on_part_number"
     t.index ["supplier_type", "supplier_id"], name: "index_products_on_supplier"
+  end
+
+  create_table "promotions", force: :cascade do |t|
+    t.datetime "start_date"
+    t.datetime "end_date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "publications", force: :cascade do |t|
