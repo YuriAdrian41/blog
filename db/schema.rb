@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_13_093952) do
+ActiveRecord::Schema[7.0].define(version: 2022_10_13_092023) do
   create_table "articles", force: :cascade do |t|
     t.string "title"
     t.text "body"
@@ -59,8 +59,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_13_093952) do
     t.string "supplier_type", null: false
     t.integer "supplier_id", null: false
     t.string "upc_code"
-    t.string "name", null: false
-    t.boolean "approved", default: false
+    t.string "name"
+    t.integer "user_id"
     t.index ["part_number"], name: "index_products_on_part_number"
     t.index ["supplier_type", "supplier_id"], name: "index_products_on_supplier"
   end
@@ -88,19 +88,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_13_093952) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "roles", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "taggings", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "taggable_type"
-    t.integer "taggable_id"
-    t.index ["taggable_type", "taggable_id"], name: "index_taggings_on_taggable"
-  end
-
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.string "occupation"
@@ -108,10 +95,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_13_093952) do
     t.datetime "updated_at", null: false
     t.integer "max_login_attempts"
     t.boolean "must_change_password"
-    t.integer "role_id"
-    t.index ["role_id"], name: "index_users_on_role_id"
   end
 
   add_foreign_key "comments", "articles"
-  add_foreign_key "users", "roles"
+  add_foreign_key "products", "users"
 end
