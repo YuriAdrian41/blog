@@ -1,4 +1,3 @@
 class Person < ApplicationRecord
-  validates :terms_of_service, acceptance: { accept: 'yes' }
-  validates :eula, acceptance: { accept: ['TRUE', 'accepted'] }
+  validates :email, confirmation: { case_sensitive: false }
 end
