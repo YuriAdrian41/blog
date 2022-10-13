@@ -1,3 +1,3 @@
 class Person < ApplicationRecord
-  validates :email, confirmation: { case_sensitive: false }
+  validates :bio, length: { maximum: 1000, too_long: "%{count} characters is the maximum allowed" }
 end
