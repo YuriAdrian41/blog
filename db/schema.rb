@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_12_202534) do
+ActiveRecord::Schema[7.0].define(version: 2022_10_13_092055) do
   create_table "articles", force: :cascade do |t|
     t.string "title"
     t.text "body"
@@ -60,6 +60,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_12_202534) do
     t.string "supplier_type", null: false
     t.integer "supplier_id", null: false
     t.string "upc_code"
+    t.string "name", null: false
+    t.boolean "approved", default: false
     t.index ["part_number"], name: "index_products_on_part_number"
     t.index ["supplier_type", "supplier_id"], name: "index_products_on_supplier"
     t.index ["user_id"], name: "index_products_on_user_id"
